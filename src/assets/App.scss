@@ -8,10 +8,10 @@
   svg path {
     fill: #000000;
   }
-
   background-color: #caf4ff;
   .main {
-    background-color: #fff;
+    background-color: #ffffff;
+    background-blend-mode: darken;
     .weather {
       .otherOptions {
         .option {
@@ -39,7 +39,7 @@
   background-color: #1a1a1d;
   .main {
     background-color: #1c1c3c;
-
+    background-blend-mode: overlay;
     .weather {
       .temps .top .degree .main-deg {
         color: #d468b5;
@@ -72,12 +72,7 @@
   border-radius: 30px;
   overflow: hidden;
   gap: 20px;
-  // background-image: url("./clouds.png");
-  // // background-repeat: no-repeat;
-  // // backdrop-filter: blur(20);
-  // background-blend-mode: difference;
-  // background-color: red;
-
+  background-image: url("./clouds.png");
   transition: all 250ms ease-in-out;
   .weather,
   .forcast {
