@@ -5,6 +5,8 @@ function Weather({ weatherData, theme, setTheme, setLocation, loading }) {
   const [city, setCity] = useState("")
   const [add, setAdd] = useState(false)
 
+  console.log(weatherData)
+
   const ExtraData = ({ name, value, children }) => {
     return (
       <div className='option'>
@@ -61,7 +63,9 @@ function Weather({ weatherData, theme, setTheme, setLocation, loading }) {
   const submit = (e) => {
     e.preventDefault()
     loading(true)
-    setLocation(city)
+    setTimeout(() => {
+      setLocation(city)
+    }, 1500)
     setAdd(false)
     setCity("")
   }
@@ -285,6 +289,8 @@ function Weather({ weatherData, theme, setTheme, setLocation, loading }) {
           )
         })}
       </div>
+
+      <div className='cloud'></div>
     </section>
   )
 }

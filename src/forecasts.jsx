@@ -13,27 +13,39 @@ function Forecast({ weatherData }) {
 
   useEffect(() => {
     // Get the current date and time
-    const date = new Date()
-    const hours = date.getHours()
-    const minutes = date.getMinutes()
-    const formattedTime = `${hours % 12 || 12}:${minutes < 10 ? "0" + minutes : minutes} ${hours >= 12 ? "PM" : "AM"}`
-    setCurrentTime(formattedTime)
+    const updateTime = () => {
+      const date = new Date()
+      const hours = date.getHours()
+      const minutes = date.getMinutes()
+      const formattedTime = `${hours % 12 || 12}:${minutes < 10 ? "0" + minutes : minutes} ${hours >= 12 ? "PM" : "AM"}`
 
-    // Set greeting based on the time
-    if (hours < 12) {
-      setGreeting("Good Morning")
-    } else if (hours < 18) {
-      setGreeting("Good Afternoon")
-    } else {
-      setGreeting("Good Evening")
+      // Set greeting based on the time
+      if (hours < 12) {
+        setGreeting("Good Morning 🙂☀️")
+      } else if (hours < 18) {
+        setGreeting("Good Afternoon 🫨🎧")
+      } else {
+        setGreeting("Good Evening 🌃🌕")
+      }
+      setCurrentTime(formattedTime)
     }
+
+    updateTime()
+
+    const intervalId = setInterval(() => {
+      updateTime()
+    }, 60000) // 60000ms = 1 minute
+    return () => clearInterval(intervalId) // Cleanup on unmount
   }, [])
 
   return (
     <section className='forcasts'>
       <div className='greeting'>
         <h1 className='greet'>{greeting}</h1>
-        <h2 className='time'>{currentTime}</h2>
+        <h2 className='time'>
+          <span style={{ fontWeight: 400, fontSize: ".9rem" }}>Local: </span>
+          {currentTime}
+        </h2>
         <div className='temps'>
           {weatherData.map((forecast, index) => (
             <div key={`forecast-${index}`}>
@@ -106,7 +118,6 @@ function Forecast({ weatherData }) {
         <div className='days'>
           <h2>Hourly Forecast</h2>
           <ul>
-            {/* <span></span> */}
             {weatherData[0]?.forecast.forecastday[0].hour.map((day, index) => (
               <div className='day' key={`hourly-${index}`}>
                 <p>{getAfterSpace(day.time)}</p>

@@ -72,6 +72,12 @@
   border-radius: 30px;
   overflow: hidden;
   gap: 20px;
+  // background-image: url("./clouds.png");
+  // // background-repeat: no-repeat;
+  // // backdrop-filter: blur(20);
+  // background-blend-mode: difference;
+  // background-color: red;
+
   transition: all 250ms ease-in-out;
   .weather,
   .forcast {
@@ -226,7 +232,7 @@
           padding: 0;
           display: flex;
           gap: 20px;
-          width: 400px;
+          width: 300px;
           max-width: 100%;
           margin-top: 30px;
           overflow: hidden;
@@ -262,13 +268,18 @@
 }
 
 @media (max-width: 800px) {
+  main {
+    padding: 0 !important;
+  }
   .main {
     flex-direction: column;
+    border-radius: 0;
     .weather {
       width: 100%;
     }
     .forcasts {
       max-width: 100% !important;
+      overflow: hidden;
       .greeting,
       .forcast {
         width: 100%;
@@ -284,7 +295,26 @@
     .weather {
       .degree {
         .main-deg {
-          font-size: 4rem !important;
+          font-size: 7rem !important;
+        }
+        .deg-info {
+          svg {
+            width: 20px !important;
+          }
+        }
+      }
+      .info {
+        font-size: 1.3rem !important;
+      }
+    }
+    .forcasts .greeting {
+      .time {
+        margin: 0;
+      }
+      .temps .degree {
+        margin: 0;
+        .deg {
+          font-size: 5rem;
         }
       }
     }
