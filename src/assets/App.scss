@@ -1,0 +1,344 @@
+.light {
+  h1,
+  h2,
+  p,
+  div {
+    color: #000000;
+  }
+  svg path {
+    fill: #000000;
+  }
+
+  background-color: #caf4ff;
+  .main {
+    background-color: #fff;
+    .weather {
+      .otherOptions {
+        .option {
+          border: 1px solid #000;
+        }
+      }
+    }
+    .forcasts {
+      background-color: #fffbe1;
+    }
+  }
+}
+.dark {
+  h1,
+  h2,
+  p,
+  div {
+    color: #fff;
+  }
+  svg path,
+  svg line,
+  svg circle {
+    fill: #ffffff !important;
+  }
+  background-color: #1a1a1d;
+  .main {
+    background-color: #1c1c3c;
+
+    .weather {
+      .temps .top .degree .main-deg {
+        color: #d468b5;
+      }
+      .otherOptions {
+        .option {
+          border: 1px solid #fff;
+        }
+      }
+    }
+    .forcasts {
+      background-color: #4f1d41;
+      .forcast .days .day {
+        border: 1px solid #fff;
+      }
+    }
+  }
+}
+
+.main {
+  position: relative;
+  max-width: 1280px;
+  margin: auto;
+  text-align: center;
+  border-radius: 30px;
+  overflow: hidden;
+  gap: 20px;
+  z-index: 3;
+  place-self: center;
+  grid-template-columns: 2fr 1fr;
+  transition: all 250ms ease-in-out;
+  .weather,
+  .forcast {
+    padding: 20px;
+  }
+
+  .weather {
+    .locate-info {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      .date-mode {
+        cursor: pointer;
+        display: flex;
+        gap: 10px;
+      }
+    }
+    .temps {
+      display: grid;
+      .top {
+        .degree {
+          margin: 20px 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .main-deg {
+            font-size: 12rem;
+            margin: 0;
+          }
+          .deg-info {
+            margin-top: 25px;
+            align-self: center;
+            .speed,
+            .humid {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              font-size: 1.1rem;
+            }
+          }
+        }
+        .info {
+          font-size: 2rem;
+          font-weight: 600;
+        }
+      }
+      .otherOptions {
+        display: flex;
+        gap: 20px;
+        width: 800px;
+        margin-top: 30px;
+        overflow: hidden;
+        transition: overflow 0.25s ease-in-out;
+        overflow: scroll;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        .option {
+          min-width: 120px;
+          max-width: 128px;
+          display: flex;
+          flex-direction: column;
+          padding: 3px;
+          border-radius: 15px;
+        }
+      }
+    }
+    .days {
+      border: 1px solid red;
+      padding: 15px;
+      .day {
+        h1 {
+          margin: 0 0 20px 0;
+        }
+        p {
+          font-weight: 600;
+        }
+        .condition {
+          color: gray;
+        }
+        border: 1px solid green;
+        width: fit-content;
+        border-radius: 6px;
+        padding: 15px;
+      }
+    }
+  }
+
+  .forcasts {
+    place-items: center;
+    .greeting {
+      width: 340px;
+      .temps {
+        display: grid;
+        .degree {
+          margin: 20px 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .deg {
+            font-size: 3em;
+            margin: 0;
+          }
+          .info {
+            .speed,
+            .humid {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              font-size: 14px;
+              svg {
+                width: 20px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    .forcast {
+      width: fit-content;
+      .days {
+        ul {
+          list-style: none;
+          width: 300px;
+          overflow-y: hidden;
+          display: flex;
+          gap: 20px;
+          padding: 0;
+          transition: overflow 0.25s ease-in-out;
+          position: relative;
+          overflow: scroll;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          .day {
+            min-width: 100px;
+            border: 1px solid #000;
+            border-radius: 6px;
+            padding: 15px;
+            h1 {
+              margin: 0 0 20px 0;
+            }
+            p {
+              font-weight: 600;
+            }
+            .condition {
+              color: gray;
+            }
+          }
+        }
+      }
+    }
+  }
+  select {
+    background: transparent;
+    border: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  main {
+    padding: 0 !important;
+  }
+  .main {
+    grid-template-columns: 1fr;
+    border-radius: 0;
+
+    .weather {
+      .locate-info {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+      }
+      .temps {
+        display: grid;
+        grid-template-columns: 1fr;
+        place-items: center;
+        .top {
+          .degree {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .main-deg {
+              font-size: 6rem;
+              margin: 0;
+            }
+            .deg-info {
+              .speed,
+              .humid {
+                font-size: 14px;
+                font-weight: 600;
+                svg {
+                  width: 23px;
+                }
+              }
+            }
+          }
+          .info {
+            font-size: 1.3rem;
+            font-weight: 600;
+          }
+        }
+        .otherOptions {
+          width: 365px;
+          max-width: 100%;
+        }
+      }
+    }
+    .forcasts {
+      .greeting {
+        .greet {
+          font-size: 2.5em !important;
+          margin-bottom: 10px;
+        }
+        .time {
+          font-size: 2.2em;
+          margin: 0;
+          font-weight: 500;
+        }
+        .degree {
+          margin-top: 50em;
+        }
+        .info {
+          font-size: 1.6rem;
+        }
+      }
+      .days {
+        padding: 15px;
+        .day {
+          h1 {
+            margin: 0 0 20px 0;
+          }
+          p {
+            font-weight: 600;
+          }
+          .condition {
+            color: gray;
+          }
+          width: fit-content;
+          border-radius: 6px;
+          padding: 15px;
+        }
+      }
+    }
+  }
+}
+.load {
+  border: 7px solid rgb(216, 32, 216);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border-bottom: 7px solid #fff;
+  border-top: 7px solid #fff;
+  animation: spin 0.01s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
