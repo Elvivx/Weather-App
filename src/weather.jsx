@@ -1,6 +1,10 @@
 import PropTypes from "prop-types"
+import { useState } from "react"
 
-function Weather({ weatherData, theme, setTheme }) {
+function Weather({ weatherData, theme, setTheme, setLocation, loading }) {
+  const [city, setCity] = useState("")
+  const [add, setAdd] = useState(false)
+
   const ExtraData = ({ name, value, children }) => {
     return (
       <div className='option'>
@@ -19,6 +23,8 @@ function Weather({ weatherData, theme, setTheme }) {
   Weather.propTypes = {
     theme: PropTypes.bool,
     setTheme: PropTypes.func,
+    setLocation: PropTypes.func,
+    loading: PropTypes.func,
     weatherData: PropTypes.arrayOf(
       PropTypes.shape({
         location: PropTypes.shape({
@@ -49,13 +55,43 @@ function Weather({ weatherData, theme, setTheme }) {
     ),
   }
 
+  const change = (e) => {
+    setCity(e.target.value)
+  }
+  const submit = (e) => {
+    e.preventDefault()
+    loading(true)
+    setLocation(city)
+    setAdd(false)
+    setCity("")
+  }
+
   return (
     <section className='weather'>
       {weatherData.map((forecast, index) => {
         return (
           <div className='locate-info' key={index}>
             <div className='city'>
+              <svg onClick={() => setAdd(!add)} height='32px' id='Layer_1' version='1.1' viewBox='0 0 512 512' width='32px' xmlns='http://www.w3.org/2000/svg'>
+                <g>
+                  <g>
+                    <g>
+                      <path d='M256,48C141.1,48,48,141.1,48,256s93.1,208,208,208c114.9,0,208-93.1,208-208S370.9,48,256,48z M256,446.7     c-105.1,0-190.7-85.5-190.7-190.7S150.9,65.3,256,65.3S446.7,150.9,446.7,256S361.1,446.7,256,446.7z' />
+                    </g>
+                  </g>
+                  <g>
+                    <polygon points='264.1,128 247.3,128 247.3,247.9 128,247.9 128,264.7 247.3,264.7 247.3,384 264.1,384 264.1,264.7 384,264.7     384,247.9 264.1,247.9   ' />
+                  </g>
+                </g>
+              </svg>
               {forecast.location.name}, {forecast.location.country}
+              {add ? (
+                <form onSubmit={submit}>
+                  <input type='text' value={city} onChange={change} placeholder='Search locations!' />
+                </form>
+              ) : (
+                ""
+              )}
             </div>
             <div className='date-mode'>
               <div className='date'>{forecast.current.last_updated}</div>
@@ -140,7 +176,7 @@ function Weather({ weatherData, theme, setTheme }) {
         {weatherData.map((forecast, index) => {
           return (
             <div className='otherOptions' key={`option${index}`}>
-              <ExtraData value={forecast.current.heatindex_c} name='Heat Index'>
+              <ExtraData value={`${forecast.current.heatindex_c}°`} name='Heat Index'>
                 <svg enableBackground='new 0 0 128 128' height='28px' id='Layer_1' version='1.1' viewBox='0 0 128 128' width='28px' xmlns='http://www.w3.org/2000/svg'>
                   <g>
                     <g>
@@ -195,7 +231,7 @@ function Weather({ weatherData, theme, setTheme }) {
                   </g>
                 </svg>
               </ExtraData>
-              <ExtraData value={forecast.current.windchill_c} name='Wind Chill'>
+              <ExtraData value={`${forecast.current.windchill_c}°`} name='Wind Chill'>
                 <svg viewBox='0 0 64 64' width='30' xmlns='http://www.w3.org/2000/svg'>
                   <path d='M19.5,13.208l-1-1.731A11.045,11.045,0,0,0,13,21h2A9.038,9.038,0,0,1,19.5,13.208Z' />
                   <path d='M44.6,33.335l1.029,1.715A8.928,8.928,0,0,0,50,27.333H48A6.944,6.944,0,0,1,44.6,33.335Z' />
@@ -206,7 +242,7 @@ function Weather({ weatherData, theme, setTheme }) {
                   <path d='M11.293,29.707,12.586,31l-1.293,1.293,1.414,1.414,2-2a1,1,0,0,0,0-1.414L13.414,29l1.293-1.293a1,1,0,0,0,0-1.414L13.414,25l1.293-1.293-1.414-1.414-2,2a1,1,0,0,0,0,1.414L12.586,27l-1.293,1.293A1,1,0,0,0,11.293,29.707Z' />
                 </svg>
               </ExtraData>
-              <ExtraData value={forecast.current.wind_degree} name='Wind Degree'>
+              <ExtraData value={`${forecast.current.wind_degree}°`} name='Wind Degree'>
                 <svg viewBox='0 0 24 24' width='35' height='35' xmlns='http://www.w3.org/2000/svg'>
                   <title />
                   <g data-name='Layer 2' id='Layer_2'>

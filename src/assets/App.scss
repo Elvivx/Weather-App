@@ -32,7 +32,7 @@
     color: #fff;
   }
   svg path,
-  svg line,
+  svg polygon,
   svg circle {
     fill: #ffffff !important;
   }
@@ -56,6 +56,10 @@
         border: 1px solid #fff;
       }
     }
+  }
+  .load {
+    border-bottom: 7px solid #4f1d41;
+    border-top: 7px solid #4f1d41;
   }
 }
 
@@ -81,6 +85,25 @@
       display: flex;
       justify-content: space-between;
       font-weight: 600;
+      .city {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        form {
+          position: absolute;
+          bottom: -38px;
+          input {
+            text-transform: capitalize;
+            border: 1px solid #000;
+            border-radius: 10px;
+            height: 40px;
+            outline: 0;
+            padding: 0 7px;
+            font-weight: 500;
+          }
+        }
+      }
       .date-mode {
         cursor: pointer;
         display: flex;
@@ -240,10 +263,9 @@
     border-radius: 0;
 
     .weather {
+      padding: 8px;
       .locate-info {
-        display: flex;
-        justify-content: space-between;
-        font-weight: 600;
+        padding: 0 10px;
       }
       .temps {
         display: grid;
@@ -277,7 +299,7 @@
           }
         }
         .otherOptions {
-          width: 365px;
+          width: 400px;
           max-width: 100%;
         }
       }
@@ -327,7 +349,7 @@
   border-radius: 50%;
   border-bottom: 7px solid #fff;
   border-top: 7px solid #fff;
-  animation: spin 0.01s linear infinite;
+  animation: spin 1s linear infinite;
   position: absolute;
   top: 50%;
   left: 50%;
