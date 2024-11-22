@@ -106,6 +106,7 @@ function Forecast({ weatherData }) {
         <div className='days'>
           <h2>Hourly Forecast</h2>
           <ul>
+            {/* <span></span> */}
             {weatherData[0]?.forecast.forecastday[0].hour.map((day, index) => (
               <div className='day' key={`hourly-${index}`}>
                 <p>{getAfterSpace(day.time)}</p>

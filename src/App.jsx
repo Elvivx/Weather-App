@@ -48,7 +48,7 @@ function App() {
 
   return (
     <main className={theme ? "light" : "dark"}>
-      <section className='main' style={loading ? { height: "500px" } : { display: "grid" }}>
+      <section className='main' style={loading ? { height: "500px" } : { display: "flex" }}>
         {!loading ? (
           <>
             <Weather weatherData={weather} theme={theme} setTheme={toggleTheme} setLocation={setLocation} loading={setLoading} />
